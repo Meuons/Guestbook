@@ -1,24 +1,64 @@
-﻿using System;
-using System.Text;
-using System.Linq;
+using System;
 using System.IO;
+using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace moment3
 {
-    
-    public class input
+    [Serializable]
+    public partial class guest
     {
        public string name;
       public  string content;
-       public string list;
-        public int length;
-
-        public static void Write(string list, int length)
+          public static List<guest> getList()
         {
+
+            //Get the xml file, dezerilaize it and turn it into a list
+            List<guest> guests = new List<guest>();
+
+           
+            guests = null;
+
+            XmlSerializer serializer3 = new XmlSerializer(typeof(List<guest>), new XmlRootAttribute("ArrayOfGuest")) ;
+
+            using (FileStream fs2 = File.OpenRead(@"C:\Users\Måns\source\repos\moment3\guests.xml"))
+            {
+                guests = (List<guest>)serializer3.Deserialize(fs2);
+
+            }
+
+            return guests;
+        }
+        public static void Read()
+        {
+
+            //Loop through the list
+
+            int i = 0;
+            var guests = getList();
+            foreach (var guest in guests)
+            {
+                
+                Console.WriteLine("[{0}] {1} - {2}",
+                    i,
+                    guest.name,
+                    guest.content
+                    );
+                i++;
+            }
+
+        }
+
+     
+        public static void Write()
+        {
+
+            //Get the users input and add it to the object
+            var guests = getList();
+
+            guest inputObj = new guest();
             
-            input inputObj = new input();
-             inputObj.list = list;
-            inputObj.length = length;
+
             Console.WriteLine("Write your name: ");
             
            
@@ -26,9 +66,8 @@ namespace moment3
 
             Console.WriteLine("Write down a quote: "); 
             inputObj.content = Console.ReadLine();
-
-
-
+  
+            //Check so that neither property is empty
             if (string.IsNullOrEmpty(inputObj.content) || string.IsNullOrEmpty(inputObj.name))
             {
                 Console.WriteLine("Error: mssing data");
@@ -36,60 +75,43 @@ namespace moment3
                 Console.ReadKey();
                 menu.MainMenu();
             }
-            else if(inputObj.content.Contains(",") || inputObj.name.Contains(","))
-            {
-
-                
-                inputObj.content = inputObj.content.Replace(",", "");
-                inputObj.name = inputObj.name.Replace(",", "");
-                Console.WriteLine(inputObj.content);
-                goto done;
-            }
+         
             else {
-                goto done;
+
+                //Add the object to the list, serialize it and write it to the file
+                guests.Add(inputObj);
+        
+      using (Stream fs = new FileStream(@"C:\Users\Måns\source\repos\moment3\guests.xml", FileMode.Create, FileAccess.Write))
+            {
+                XmlSerializer serializer2 = new XmlSerializer(typeof(List<guest>));
+                serializer2.Serialize(fs, guests);
+
+            }
             
                  }
-            done:  string newString = $"{list}[{length}]{inputObj.name} - {inputObj.content},";
-            
-            File.WriteAllText(@"C:\Users\Måns\source\repos\moment3\guests.txt", newString);
-            Console.WriteLine("Quote added");
+   
         }
 
 
-
-     
-      
-            public static void Delete(string[] arr)
+            public static void Delete()
         {
+            var guests = getList();
 
-            string newString = "";
+            //Remove the element with the index selected by the user. Serialize the updated list and add it to the file
 
             Console.WriteLine("Choose index");
             var input = Console.ReadLine();
-            int numIndex = int.Parse(input);
-           
+            int index = int.Parse(input);
 
-            arr = arr.Where((val, idx) => idx != numIndex).ToArray();
-            int j = 0;
-            foreach (string i in arr)
+            guests.RemoveAt(index);
+
+
+            using (Stream fs = new FileStream(@"C:\Users\Måns\source\repos\moment3\guests.xml", FileMode.Create, FileAccess.Write))
             {
-
-                int startIndex = i.Length - 3;
-
-               string content = i.Substring(3, startIndex);
-
-                newString += "[" + j + "]" + content + ",";
-
-                j++;
+                XmlSerializer serializer2 = new XmlSerializer(typeof(List<guest>));
+                serializer2.Serialize(fs, guests);
 
             }
-
-
-            
-            File.WriteAllText(@"C:\Users\Måns\source\repos\moment3\guests.txt", newString);
-
-           
-            Console.WriteLine("Quote deleted");
 
         }
     }
