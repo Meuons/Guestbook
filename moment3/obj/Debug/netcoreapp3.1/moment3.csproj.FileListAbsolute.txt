@@ -1,0 +1,14 @@
+C:\Users\Måns\source\repos\moment3\moment3\bin\Debug\netcoreapp3.1\moment3.exe
+C:\Users\Måns\source\repos\moment3\moment3\bin\Debug\netcoreapp3.1\moment3.deps.json
+C:\Users\Måns\source\repos\moment3\moment3\bin\Debug\netcoreapp3.1\moment3.runtimeconfig.json
+C:\Users\Måns\source\repos\moment3\moment3\bin\Debug\netcoreapp3.1\moment3.runtimeconfig.dev.json
+C:\Users\Måns\source\repos\moment3\moment3\bin\Debug\netcoreapp3.1\moment3.dll
+C:\Users\Måns\source\repos\moment3\moment3\bin\Debug\netcoreapp3.1\moment3.pdb
+C:\Users\Måns\source\repos\moment3\moment3\obj\Debug\netcoreapp3.1\moment3.csproj.AssemblyReference.cache
+C:\Users\Måns\source\repos\moment3\moment3\obj\Debug\netcoreapp3.1\moment3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Måns\source\repos\moment3\moment3\obj\Debug\netcoreapp3.1\moment3.AssemblyInfoInputs.cache
+C:\Users\Måns\source\repos\moment3\moment3\obj\Debug\netcoreapp3.1\moment3.AssemblyInfo.cs
+C:\Users\Måns\source\repos\moment3\moment3\obj\Debug\netcoreapp3.1\moment3.csproj.CoreCompileInputs.cache
+C:\Users\Måns\source\repos\moment3\moment3\obj\Debug\netcoreapp3.1\moment3.dll
+C:\Users\Måns\source\repos\moment3\moment3\obj\Debug\netcoreapp3.1\moment3.pdb
+C:\Users\Måns\source\repos\moment3\moment3\obj\Debug\netcoreapp3.1\moment3.genruntimeconfig.cache
