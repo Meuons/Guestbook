@@ -1,8 +1,11 @@
-﻿using System;
-using System.IO;
+using System;
+
+
 
 namespace moment3
 {
+
+    [Serializable]
     class menu
     {
 
@@ -17,27 +20,12 @@ namespace moment3
             Console.WriteLine("Option 2. Delete");
             Console.WriteLine("Option 3. Quit");
             //Read the file
-            var a = File.ReadAllText(@"C:\Users\Måns\source\repos\moment3\guests.txt");
+
+            guest.Read();
 
             
             //Put the file in an array and get its length
-            string[] fooArray = a.Split(',', StringSplitOptions.RemoveEmptyEntries);  // now you have an array of 3 strings
-
-            int length = fooArray.Length;
-
-      
-
-            //Write out the posts
-            foreach (string i in fooArray)
-            {
-                int j = 0;
-                Console.WriteLine(i);
-            }
-
-
-            String[] arr = new String[] { a };
-
-
+         
             //Let the user tpye in a number and start the correlating fucntion
             string myoptions;
             myoptions = Console.ReadLine();
@@ -46,14 +34,14 @@ namespace moment3
             {
                 case "1":
 
-                    input.Write(a, length);
+                    guest.Write();
                     MainMenu();
 
                     break;
 
                 case "2":
 
-                    input.Delete(fooArray);
+                    guest.Delete();
                     MainMenu();
 
                     break;
